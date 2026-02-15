@@ -1,18 +1,20 @@
-# Use the official OpenJDK 17 image as the base image
+# Use OpenJDK 17 lightweight image
 FROM openjdk:17-jdk-alpine
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy the source code into the container
-COPY src/Main.java /app/Main.java
-COPY quotes.txt quotes.txt
+# Copy source code
+COPY src/ /app/
 
-# Compile the Java code
+# Copy HTML file
+COPY quotes.html /app/
+
+# Compile Java file
 RUN javac Main.java
 
-# Expose port 8000 for the HTTP server
+# Expose port
 EXPOSE 8000
 
-# Run the Java application when the container starts
+# Run application
 CMD ["java", "Main"]
